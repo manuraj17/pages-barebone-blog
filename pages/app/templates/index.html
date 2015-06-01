@@ -1,22 +1,8 @@
-<html>
-	<head>
-		<title>My Pages App</title>
-		<style type="text/css">
-			title{
-				color: #36C;
-				}
-	
-			body > div {
-			  			color: #001111; 
-						}	
-		</style>
-	</head>
-	<body>
-	<div >
-	<div id="title">{{ post.Title}}</div>
-	<div>{{ post.Author}}<br></div>
-		{{ post.post }}
-	</div>
-	</body>
-</html>
-
+{% extends "base.html" %}
+{% block content %}
+	{% for post in posts %}
+	{{ post.title}}-{{ post.author}}<br>
+	{{ post.content }}
+	<hr>
+	{% endfor %}
+{% endblock %}

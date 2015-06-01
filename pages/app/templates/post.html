@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<form name="post_form" action="{{ url_for('post_submit')}}" method='POST'>
+<input type="text" maxlength="1024" name="title"></input>
+<input type="text" maxlength="4096" name="content"></input>
+<input type="submit" value="Submit Post">
+</form>
+{% endblock %}
