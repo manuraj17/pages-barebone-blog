@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="{{ url_for('admin')}}" method='POST'>
+	{% for post in posts %}
+	<input type="checkbox" name="posts" value="{{post._id}}"/>{{ post.title}}<br/>
+	<hr>
+	{% endfor %}
+	<input type="submit" value="Delete Post(s)">
+</form>
+{% endblock %}

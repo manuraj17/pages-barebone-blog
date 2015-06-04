@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from app import app
 from pymongo import MongoClient
+from bson import ObjectId
 
 #Space to load database
 client = MongoClient()
@@ -34,4 +35,20 @@ def post_submit():
 
 @app.route('/about')
 def about():
-	return "A barebone blogger app designed in Flask with mongodb :) "
+	return render_template("about.html")
+
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+	if request.method == 'GET':
+		posts = db.posts.find()
+		return render_template("admin.html", posts=posts)
+	else:
+		posts_to_be_deleted = request.form.getlist("posts")
+		for ids in posts_to_be_deleted:
+		#return "In the making"	
+			 db.posts.remove({'_id':ObjectId(ids)})
+		posts = db.posts.find()
+		return render_template("admin.html", posts=posts)
+	
+
+
